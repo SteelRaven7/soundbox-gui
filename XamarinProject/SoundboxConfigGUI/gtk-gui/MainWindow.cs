@@ -17,7 +17,17 @@ public partial class MainWindow
 	private global::Gtk.VBox vbox4;
 	private global::Gtk.MenuBar menubar6;
 	private global::Gtk.Notebook notebook1;
-	private global::Gtk.Label label5;
+	private global::Gtk.Table table1;
+	private global::Gtk.Table table3;
+	private global::Gtk.ScrolledWindow GtkScrolledWindow;
+	private global::Gtk.TextView log;
+	private global::Gtk.Label logLabel;
+	private global::Gtk.VBox vbox1;
+	private global::Gtk.Table table2;
+	private global::Gtk.Label label1;
+	private global::Gtk.Button refreshPortsButton;
+	private global::Gtk.ComboBox portList;
+	private global::Gtk.Button connectButton;
 	private global::Gtk.Label labelStatus;
 	private global::Gtk.Label label8;
 	private global::Gtk.Label labelEqualizer;
@@ -87,23 +97,110 @@ public partial class MainWindow
 		this.notebook1.Name = "notebook1";
 		this.notebook1.CurrentPage = 0;
 		// Container child notebook1.Gtk.Notebook+NotebookChild
-		this.label5 = new global::Gtk.Label ();
-		this.label5.Name = "label5";
-		this.label5.LabelProp = global::Mono.Unix.Catalog.GetString ("Status");
-		this.notebook1.Add (this.label5);
+		this.table1 = new global::Gtk.Table (((uint)(1)), ((uint)(2)), false);
+		this.table1.Name = "table1";
+		this.table1.RowSpacing = ((uint)(6));
+		this.table1.ColumnSpacing = ((uint)(6));
+		// Container child table1.Gtk.Table+TableChild
+		this.table3 = new global::Gtk.Table (((uint)(2)), ((uint)(1)), false);
+		this.table3.Name = "table3";
+		this.table3.RowSpacing = ((uint)(6));
+		this.table3.ColumnSpacing = ((uint)(6));
+		// Container child table3.Gtk.Table+TableChild
+		this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
+		this.GtkScrolledWindow.WidthRequest = 500;
+		this.GtkScrolledWindow.Name = "GtkScrolledWindow";
+		this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
+		// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
+		this.log = new global::Gtk.TextView ();
+		this.log.CanFocus = true;
+		this.log.Name = "log";
+		this.log.Editable = false;
+		this.GtkScrolledWindow.Add (this.log);
+		this.table3.Add (this.GtkScrolledWindow);
+		global::Gtk.Table.TableChild w4 = ((global::Gtk.Table.TableChild)(this.table3 [this.GtkScrolledWindow]));
+		w4.TopAttach = ((uint)(1));
+		w4.BottomAttach = ((uint)(2));
+		// Container child table3.Gtk.Table+TableChild
+		this.logLabel = new global::Gtk.Label ();
+		this.logLabel.Name = "logLabel";
+		this.logLabel.LabelProp = global::Mono.Unix.Catalog.GetString ("Log");
+		this.table3.Add (this.logLabel);
+		global::Gtk.Table.TableChild w5 = ((global::Gtk.Table.TableChild)(this.table3 [this.logLabel]));
+		w5.YOptions = ((global::Gtk.AttachOptions)(4));
+		this.table1.Add (this.table3);
+		global::Gtk.Table.TableChild w6 = ((global::Gtk.Table.TableChild)(this.table1 [this.table3]));
+		w6.LeftAttach = ((uint)(1));
+		w6.RightAttach = ((uint)(2));
+		w6.XOptions = ((global::Gtk.AttachOptions)(4));
+		w6.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child table1.Gtk.Table+TableChild
+		this.vbox1 = new global::Gtk.VBox ();
+		this.vbox1.Spacing = 6;
+		// Container child vbox1.Gtk.Box+BoxChild
+		this.table2 = new global::Gtk.Table (((uint)(1)), ((uint)(2)), false);
+		this.table2.Name = "table2";
+		this.table2.RowSpacing = ((uint)(6));
+		this.table2.ColumnSpacing = ((uint)(6));
+		// Container child table2.Gtk.Table+TableChild
+		this.label1 = new global::Gtk.Label ();
+		this.label1.Name = "label1";
+		this.label1.LabelProp = global::Mono.Unix.Catalog.GetString ("COM Ports");
+		this.table2.Add (this.label1);
+		global::Gtk.Table.TableChild w7 = ((global::Gtk.Table.TableChild)(this.table2 [this.label1]));
+		w7.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child table2.Gtk.Table+TableChild
+		this.refreshPortsButton = new global::Gtk.Button ();
+		this.refreshPortsButton.CanFocus = true;
+		this.refreshPortsButton.Name = "refreshPortsButton";
+		this.refreshPortsButton.UseUnderline = true;
+		this.refreshPortsButton.Label = global::Mono.Unix.Catalog.GetString ("Refresh");
+		this.table2.Add (this.refreshPortsButton);
+		global::Gtk.Table.TableChild w8 = ((global::Gtk.Table.TableChild)(this.table2 [this.refreshPortsButton]));
+		w8.LeftAttach = ((uint)(1));
+		w8.RightAttach = ((uint)(2));
+		w8.XOptions = ((global::Gtk.AttachOptions)(4));
+		w8.YOptions = ((global::Gtk.AttachOptions)(4));
+		this.vbox1.Add (this.table2);
+		global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.table2]));
+		w9.Position = 0;
+		w9.Expand = false;
+		w9.Fill = false;
+		// Container child vbox1.Gtk.Box+BoxChild
+		this.portList = global::Gtk.ComboBox.NewText ();
+		this.portList.Name = "portList";
+		this.vbox1.Add (this.portList);
+		global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.portList]));
+		w10.Position = 1;
+		w10.Expand = false;
+		w10.Fill = false;
+		// Container child vbox1.Gtk.Box+BoxChild
+		this.connectButton = new global::Gtk.Button ();
+		this.connectButton.WidthRequest = 50;
+		this.connectButton.CanFocus = true;
+		this.connectButton.Name = "connectButton";
+		this.connectButton.UseUnderline = true;
+		this.connectButton.Label = global::Mono.Unix.Catalog.GetString ("Connect");
+		this.vbox1.Add (this.connectButton);
+		global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.connectButton]));
+		w11.Position = 2;
+		w11.Expand = false;
+		w11.Fill = false;
+		this.table1.Add (this.vbox1);
+		this.notebook1.Add (this.table1);
 		// Notebook tab
 		this.labelStatus = new global::Gtk.Label ();
 		this.labelStatus.Name = "labelStatus";
 		this.labelStatus.LabelProp = global::Mono.Unix.Catalog.GetString ("Status");
-		this.notebook1.SetTabLabel (this.label5, this.labelStatus);
+		this.notebook1.SetTabLabel (this.table1, this.labelStatus);
 		this.labelStatus.ShowAll ();
 		// Container child notebook1.Gtk.Notebook+NotebookChild
 		this.label8 = new global::Gtk.Label ();
 		this.label8.Name = "label8";
 		this.label8.LabelProp = global::Mono.Unix.Catalog.GetString ("Equalizer");
 		this.notebook1.Add (this.label8);
-		global::Gtk.Notebook.NotebookChild w4 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1 [this.label8]));
-		w4.Position = 1;
+		global::Gtk.Notebook.NotebookChild w14 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1 [this.label8]));
+		w14.Position = 1;
 		// Notebook tab
 		this.labelEqualizer = new global::Gtk.Label ();
 		this.labelEqualizer.Name = "labelEqualizer";
@@ -115,8 +212,8 @@ public partial class MainWindow
 		this.label10.Name = "label10";
 		this.label10.LabelProp = global::Mono.Unix.Catalog.GetString ("Echo");
 		this.notebook1.Add (this.label10);
-		global::Gtk.Notebook.NotebookChild w5 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1 [this.label10]));
-		w5.Position = 2;
+		global::Gtk.Notebook.NotebookChild w15 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1 [this.label10]));
+		w15.Position = 2;
 		// Notebook tab
 		this.labelEcho = new global::Gtk.Label ();
 		this.labelEcho.Name = "labelEcho";
@@ -124,8 +221,8 @@ public partial class MainWindow
 		this.notebook1.SetTabLabel (this.label10, this.labelEcho);
 		this.labelEcho.ShowAll ();
 		this.vbox4.Add (this.notebook1);
-		global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.notebook1]));
-		w6.Position = 1;
+		global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.notebook1]));
+		w16.Position = 1;
 		// Container child vbox4.Gtk.Box+BoxChild
 		this.statusbar2 = new global::Gtk.Statusbar ();
 		this.statusbar2.Name = "statusbar2";
@@ -136,24 +233,24 @@ public partial class MainWindow
 		this.progressbar.Text = "";
 		this.progressbar.PulseStep = 0.06D;
 		this.statusbar2.Add (this.progressbar);
-		global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.statusbar2 [this.progressbar]));
-		w7.Position = 1;
+		global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.statusbar2 [this.progressbar]));
+		w17.Position = 1;
 		// Container child statusbar2.Gtk.Box+BoxChild
 		this.statusLabel = new global::Gtk.Label ();
 		this.statusLabel.WidthRequest = 150;
 		this.statusLabel.Name = "statusLabel";
 		this.statusLabel.LabelProp = global::Mono.Unix.Catalog.GetString ("Not connected");
 		this.statusbar2.Add (this.statusLabel);
-		global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.statusbar2 [this.statusLabel]));
-		w8.Position = 2;
-		w8.Expand = false;
-		w8.Fill = false;
+		global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.statusbar2 [this.statusLabel]));
+		w18.Position = 2;
+		w18.Expand = false;
+		w18.Fill = false;
 		this.vbox4.Add (this.statusbar2);
-		global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.statusbar2]));
-		w9.Position = 2;
-		w9.Expand = false;
-		w9.Fill = false;
-		w9.Padding = ((uint)(2));
+		global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.statusbar2]));
+		w19.Position = 2;
+		w19.Expand = false;
+		w19.Fill = false;
+		w19.Padding = ((uint)(2));
 		this.Add (this.vbox4);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
@@ -164,5 +261,8 @@ public partial class MainWindow
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		this.connectAction.Activated += new global::System.EventHandler (this.Connect);
 		this.disconnectAction.Activated += new global::System.EventHandler (this.Disconnect);
+		this.refreshPortsButton.Clicked += new global::System.EventHandler (this.RefreshPorts);
+		this.portList.Changed += new global::System.EventHandler (this.PortChanged);
+		this.connectButton.Clicked += new global::System.EventHandler (this.Connect);
 	}
 }
