@@ -10,10 +10,9 @@ public partial class MainWindow: Gtk.Window
 		instance.statusLabel.LabelProp = text;
 	}
 
-	public static void ConnectionEstablished() {
-		MainWindow.Log ("Connection to Soundbox established.");
-		SetStatusText("Connected");
-		EndProgress ();
+	public static void ClearDone() {
+		MainWindow.Log ("Flash memory cleared.");
+		SetStatusText("Writing configuration");
 	}
 
 	public static void StartProgress(bool useAbsoluteProgress = false) {
@@ -64,7 +63,7 @@ public partial class MainWindow: Gtk.Window
 		if (ports.Length == 0) {
 			comPortNames.AppendValues ("No COM ports available");
 			portList.Sensitive = false;
-			Log ("No available COM ports detected, plug in UART at press refresh.");
+			Log ("No available COM ports detected, plug in UART and press refresh.");
 		} else {
 			foreach (string p in ports) {
 				comPortNames.AppendValues (p);
@@ -79,8 +78,7 @@ public partial class MainWindow: Gtk.Window
 	protected void Connect (object sender, EventArgs e)
 	{
 		if (soundbox.Connect ()) {
-			Log ("Connecting...");
-			SetStatusText ("Connecting...");
+			SetStatusText ("Clearing flash memory");
 			StartProgress ();
 		}
 	}

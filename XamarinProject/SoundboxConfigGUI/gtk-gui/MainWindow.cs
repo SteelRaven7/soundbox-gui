@@ -136,6 +136,7 @@ public partial class MainWindow
 		w6.YOptions = ((global::Gtk.AttachOptions)(4));
 		// Container child table1.Gtk.Table+TableChild
 		this.vbox1 = new global::Gtk.VBox ();
+		this.vbox1.Name = "vbox1";
 		this.vbox1.Spacing = 6;
 		// Container child vbox1.Gtk.Box+BoxChild
 		this.table2 = new global::Gtk.Table (((uint)(1)), ((uint)(2)), false);

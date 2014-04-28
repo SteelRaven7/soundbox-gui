@@ -6,20 +6,9 @@ namespace SoundboxConfigGUI
 {
 	public class Soundbox
 	{
-		public enum Command : byte {
-			Handshake = 0x00,
-			Handshake2 = 0x01,
-			Test = 0x00,
-		}
-
-		enum State {
-			Disconnected,
-			HandshakePending,
-			Ready
-		}
+		byte readyByte = 63;
 
 		SerialPort serial = null;
-		State state = State.Disconnected;
 
 		public Soundbox () {
 
@@ -59,38 +48,48 @@ namespace SoundboxConfigGUI
 				return false;
 			}
 
-			state = State.HandshakePending;
-			MainWindow.Log ("Sending handshake...");
-			SendCommand (Command.Handshake);
+			MainWindow.Log ("Clearing flash memory...");
+			SendClearFlashMessage ();
+			//SendCommand (Command.Handshake);
 			//SendCommand (Command.Test, new byte[] {0xaa, 0xaa});
 
 			return true;
 		}
 
 		public void Disconnect() {
-			state = State.Disconnected;
 			serial.Close ();
 		}
 
-		public void SendCommand(Command c, byte[] payload = null) {
+		void WriteConfiguration() {
+			SendMessage (2, 0x0f00);
+		}
 
-			if (payload == null) {
-				payload = new byte[] {0x00, 0x00};
-			}
+		public void SendClearFlashMessage() {
+			SendMessage (0, 0);
+		}
+
+		public void SendMessage(ushort address, ushort payload) {
+		
+			byte[] message = new byte[4];
+
+			byte[] addressBytes = BitConverter.GetBytes (address);
+			byte[] payloadBytes = BitConverter.GetBytes (payload);
+
+			// The bytes come in swapped order.
+			message [0] = addressBytes [1];
+			message [1] = addressBytes [0];
+			message [2] = payloadBytes [1];
+			message [3] = payloadBytes [0];
 
 #if DEBUG
-			Trace.Write ("Sending command " + c + ", payload: ");
+			Trace.WriteLine ("Sending message, address: " + address + ", payload: " + payload);
 
-			foreach(byte p in payload) {
-				Trace.Write(p+", ");
+			Trace.Write("Byte array:");
+			foreach(byte b in message) {
+				Trace.Write(b+", ");
 			}
 			Trace.WriteLine("");
 #endif
-
-			byte[] message = new byte[payload.Length + 1];
-
-			message [0] = (byte)c;
-			payload.CopyTo (message, 1);
 
 			serial.Write (message, 0, message.Length);
 		}
@@ -102,21 +101,11 @@ namespace SoundboxConfigGUI
 			byte command = message[0];
 			Trace.WriteLine ("Data received: " + data + " interpreted as command " + command);
 
-			switch (command) {
-			case (byte) Command.Handshake2:
-				MainWindow.Log ("Handshake received.");
-
-				if (state == State.HandshakePending) {
-					state = State.Ready;
-					MainWindow.ConnectionEstablished ();
-				} else {
-					UnknownState ();
-				}
-				break;
-			default:
-				Trace.WriteLine ("Unrecognized command: " + command);
-				UnknownState ();
-				break;
+			if(command == readyByte) {
+				MainWindow.ClearDone ();
+				WriteConfiguration ();
+			} else {
+				Trace.WriteLine ("Unrecognized command received: " + command);
 			}
 		}
 
@@ -125,12 +114,7 @@ namespace SoundboxConfigGUI
 		}
 
 		public bool Connected() {
-			return HasSerialPort() && serial.IsOpen && state != State.Disconnected;
-		}
-
-		void UnknownState() {
-			Trace.WriteLine ("Soundbox is in an unknown state, disconnecting...");
-			Disconnect();
+			return HasSerialPort() && serial.IsOpen;
 		}
 
 		static byte[] GetBytes(string str) {
