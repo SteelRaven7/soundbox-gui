@@ -67,6 +67,7 @@
     <Compile Include="DataTypes\ConfigurationValue.cs" />
     <Compile Include="DataTypes\CInteger.cs" />
     <Compile Include="DataTypes\CFixed.cs" />
+    <Compile Include="DataTypes\CUnsignedInteger.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -83,7 +83,7 @@ public partial class MainWindow
 		this.vbox4.Name = "vbox4";
 		this.vbox4.Spacing = 6;
 		// Container child vbox4.Gtk.Box+BoxChild
-		this.UIManager.AddUiFromString (@"<ui><menubar name='menubar6'><menu name='FileAction' action='FileAction'><menuitem name='newAction' action='newAction'/><menuitem name='openAction' action='openAction'/><menuitem name='saveAction' action='saveAction'/><menuitem name='saveAsAction' action='saveAsAction'/><menuitem name='quitAction' action='quitAction'/></menu><menu name='ConnectionAction' action='ConnectionAction'><menuitem name='connectAction' action='connectAction'/><menuitem name='jumpToAction' action='jumpToAction'/><menuitem name='disconnectAction' action='disconnectAction'/></menu></menubar></ui>");
+		this.UIManager.AddUiFromString (@"<ui><menubar name='menubar6'><menu name='FileAction' action='FileAction'><menuitem name='newAction' action='newAction'/><menuitem name='openAction' action='openAction'/><menuitem name='saveAction' action='saveAction'/><menuitem name='saveAsAction' action='saveAsAction'/><menuitem name='quitAction' action='quitAction'/></menu><menu name='ConnectionAction' action='ConnectionAction'><menuitem name='jumpToAction' action='jumpToAction'/></menu></menubar></ui>");
 		this.menubar6 = ((global::Gtk.MenuBar)(this.UIManager.GetWidget ("/menubar6")));
 		this.menubar6.Name = "menubar6";
 		this.vbox4.Add (this.menubar6);
@@ -181,7 +181,7 @@ public partial class MainWindow
 		this.connectButton.CanFocus = true;
 		this.connectButton.Name = "connectButton";
 		this.connectButton.UseUnderline = true;
-		this.connectButton.Label = global::Mono.Unix.Catalog.GetString ("Connect");
+		this.connectButton.Label = global::Mono.Unix.Catalog.GetString ("Program");
 		this.vbox1.Add (this.connectButton);
 		global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.connectButton]));
 		w11.Position = 2;
@@ -261,9 +261,10 @@ public partial class MainWindow
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		this.connectAction.Activated += new global::System.EventHandler (this.Connect);
+		this.jumpToAction.Activated += new global::System.EventHandler (this.Program);
 		this.disconnectAction.Activated += new global::System.EventHandler (this.Disconnect);
 		this.refreshPortsButton.Clicked += new global::System.EventHandler (this.RefreshPorts);
 		this.portList.Changed += new global::System.EventHandler (this.PortChanged);
-		this.connectButton.Clicked += new global::System.EventHandler (this.Connect);
+		this.connectButton.Clicked += new global::System.EventHandler (this.Program);
 	}
 }

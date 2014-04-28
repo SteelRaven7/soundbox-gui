@@ -1,17 +1,15 @@
 ﻿using System;
+using System.Collections;
 
 namespace SoundboxConfigGUI
 {
 	public class ConfigurationValue
 	{
-		protected UInt16 value;
+		public UInt16 value;
+		public UInt16 address;
 
-		public ConfigurationValue () {
-
-		}
-
-		public virtual UInt16 Value() {
-			return value;
+		public ConfigurationValue (UInt16 address) {
+			this.address = address;
 		}
 
 		protected void ResetBits() {
@@ -23,6 +21,14 @@ namespace SoundboxConfigGUI
 				int tempValue = (UInt16) value;
 				tempValue = tempValue | (1 << index);
 				value = (UInt16) tempValue;
+			}
+		}
+
+		protected void BitsToValue(BitArray bits, int offset) {
+			ResetBits ();
+
+			for (int i = 0; i < 16; i++) {
+				SetBit (i, bits[i+offset]);
 			}
 		}
 	}

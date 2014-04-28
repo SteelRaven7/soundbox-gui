@@ -6,7 +6,7 @@ namespace SoundboxConfigGUI
 {
 	public class Soundbox
 	{
-		byte readyByte = 63;
+		byte readyByte = (byte) '?'; // YOLO
 
 		SerialPort serial = null;
 
@@ -31,6 +31,7 @@ namespace SoundboxConfigGUI
 		}
 
 		public bool Connect() {
+			MainWindow.Log ("Connecting to Soundbox...");
 			if (!HasSerialPort ()) {
 				MainWindow.SetStatusText ("No port is available");
 				MainWindow.Log ("Cannot connect: No COM port is available.");
@@ -60,12 +61,12 @@ namespace SoundboxConfigGUI
 			serial.Close ();
 		}
 
-		void WriteConfiguration() {
-			SendMessage (2, 0x0f00);
-		}
-
 		public void SendClearFlashMessage() {
 			SendMessage (0, 0);
+		}
+
+		public void SendConfigurationValue(ConfigurationValue value) {
+			SendMessage (value.address, value.value);
 		}
 
 		public void SendMessage(ushort address, ushort payload) {
@@ -75,13 +76,12 @@ namespace SoundboxConfigGUI
 			byte[] addressBytes = BitConverter.GetBytes (address);
 			byte[] payloadBytes = BitConverter.GetBytes (payload);
 
-			// The bytes come in swapped order.
+			// The bytes are sent in swapped order.
 			message [0] = addressBytes [1];
 			message [1] = addressBytes [0];
 			message [2] = payloadBytes [1];
 			message [3] = payloadBytes [0];
 
-#if DEBUG
 			Trace.WriteLine ("Sending message, address: " + address + ", payload: " + payload);
 
 			Trace.Write("Byte array:");
@@ -89,7 +89,6 @@ namespace SoundboxConfigGUI
 				Trace.Write(b+", ");
 			}
 			Trace.WriteLine("");
-#endif
 
 			serial.Write (message, 0, message.Length);
 		}
@@ -103,7 +102,6 @@ namespace SoundboxConfigGUI
 
 			if(command == readyByte) {
 				MainWindow.ClearDone ();
-				WriteConfiguration ();
 			} else {
 				Trace.WriteLine ("Unrecognized command received: " + command);
 			}

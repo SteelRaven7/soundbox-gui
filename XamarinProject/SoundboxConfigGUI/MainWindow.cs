@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Gtk;
 using SoundboxConfigGUI;
@@ -12,7 +13,7 @@ public partial class MainWindow: Gtk.Window
 
 	public static void ClearDone() {
 		MainWindow.Log ("Flash memory cleared.");
-		SetStatusText("Writing configuration");
+		instance.WriteConfiguration ();
 	}
 
 	public static void StartProgress(bool useAbsoluteProgress = false) {
@@ -28,31 +29,45 @@ public partial class MainWindow: Gtk.Window
 	}
 
 	public static void Log(string message) {
-		//instance.logLabel.Text += message + "\n";
+		instance.log.Buffer.Text += message + "\n";
 	}
 
 	static MainWindow instance;
 	Soundbox soundbox;
 	Timer pulseTimer;
-	string logText = "";
+	List<ConfigurationValue> configurationValues;
 
 	public MainWindow () : base (Gtk.WindowType.Toplevel)
 	{
 		Build ();
 		instance = this;
+		configurationValues = new List<ConfigurationValue> ();
 		soundbox = new Soundbox ();
-		PopulatePortList ();
 		Log ("Application started");
+		PopulatePortList ();
 
 		pulseTimer = new Timer (50);
 		pulseTimer.Elapsed += OnProgressIncrement;
 		pulseTimer.Enabled = false;
 	}
 
+	public void AddValue(ConfigurationValue v) {
+		configurationValues.Add (v);
+	}
+
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
 	{
 		Application.Quit ();
 		a.RetVal = true;
+	}
+
+	void WriteConfiguration() {
+		Log ("Writing configuration.");
+		SetStatusText ("Writing configuration");
+
+		foreach (ConfigurationValue value in configurationValues) {
+			soundbox.SendConfigurationValue(value);
+		}
 	}
 
 	void PopulatePortList() {
@@ -75,12 +90,17 @@ public partial class MainWindow: Gtk.Window
 		portList.Active = 0;
 	}
 
-	protected void Connect (object sender, EventArgs e)
+	protected void Program (object sender, EventArgs e)
 	{
 		if (soundbox.Connect ()) {
 			SetStatusText ("Clearing flash memory");
 			StartProgress ();
 		}
+	}
+
+	protected void Connect (object sender, EventArgs e)
+	{
+		// Unused
 	}
 		
 	protected void Disconnect (object sender, EventArgs e)

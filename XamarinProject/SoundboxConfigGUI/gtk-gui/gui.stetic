@@ -61,6 +61,7 @@
         <property name="Label" translatable="yes">Program</property>
         <property name="ShortLabel" translatable="yes">Program</property>
         <property name="StockId">gtk-jump-to</property>
+        <signal name="Activated" handler="Program" />
       </action>
       <action id="disconnectAction">
         <property name="Type">Action</property>
@@ -90,9 +91,7 @@
                 <node type="Menuitem" action="quitAction" />
               </node>
               <node type="Menu" action="ConnectionAction">
-                <node type="Menuitem" action="connectAction" />
                 <node type="Menuitem" action="jumpToAction" />
-                <node type="Menuitem" action="disconnectAction" />
               </node>
             </node>
           </widget>
@@ -251,17 +250,17 @@
                     </child>
                     <child>
                       <widget class="Gtk.Button" id="connectButton">
-                        <property name="MemberName">connectButton</property>
+                        <property name="MemberName">programButton</property>
                         <property name="WidthRequest">50</property>
                         <property name="CanFocus">True</property>
                         <property name="Type">TextOnly</property>
-                        <property name="Label" translatable="yes">Connect</property>
+                        <property name="Label" translatable="yes">Program</property>
                         <property name="UseUnderline">True</property>
-                        <signal name="Clicked" handler="Connect" />
+                        <signal name="Clicked" handler="Program" />
                       </widget>
                       <packing>
                         <property name="Position">2</property>
-                        <property name="AutoSize">False</property>
+                        <property name="AutoSize">True</property>
                         <property name="Expand">False</property>
                         <property name="Fill">False</property>
                       </packing>
