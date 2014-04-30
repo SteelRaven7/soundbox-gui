@@ -74,7 +74,7 @@ public partial class MainWindow: Gtk.Window
 
 	void PopulatePortList() {
 		string[] ports = System.IO.Ports.SerialPort.GetPortNames ();
-		
+
 		ListStore comPortNames = new ListStore (typeof(string));
 
 		if (ports.Length == 0) {
@@ -94,6 +94,9 @@ public partial class MainWindow: Gtk.Window
 
 	protected void Program (object sender, EventArgs e)
 	{
+		Log ("Listing coefficients...");
+		PopulateValueList ();
+
 		if (soundbox.Connect ()) {
 			SetStatusText ("Clearing flash memory");
 			StartProgress ();
@@ -104,7 +107,7 @@ public partial class MainWindow: Gtk.Window
 	{
 		// Unused
 	}
-		
+
 	protected void Disconnect (object sender, EventArgs e)
 	{
 		SetStatusText("Not connected");
@@ -132,35 +135,39 @@ public partial class MainWindow: Gtk.Window
 		return s.Replace ('.', ',');
 	}
 
-	protected void DelayChanged (object sender, EventArgs e)
-	{
-		Entry delay = (Entry) sender;
-
-		float delayTime;
+	float ParseFloat(Entry e, float min = -9999f, float max = 9999f) {
+		float f = 0;
 		try {
-			delayTime = float.Parse(FullStopsToCommas(delay.Text));
+			f = float.Parse(FullStopsToCommas(e.Text));
 		} catch(Exception ex) {
-			MainWindow.Log("Echo delay: Wrong format");
-			return;
+			MainWindow.Log(e.Name+": Wrong format");
+			Trace.WriteLine (ex);
+			return 0f;
 		}
 
-		if(delayTime > 1.5f) {
-			MainWindow.Log("Echo delay is more than 1.5 seconds");
+		if(f > max) {
+			f = max;
+			MainWindow.Log (e.Name + " is more than " + max);
 		}
-		else if(delayTime < 0f) {
-			MainWindow.Log("Echo delay is less than 0 seconds");
-			delayTime = 0f;
-		}
-
-		if(delayTime > 1.48f) {
-			delayTime = 1.48f;
+		else if(f < min) {
+			f = min;
+			MainWindow.Log (e.Name + " is less than " + min);
 		}
 
-		UInt16 samples = (UInt16) (delayTime*44100);
+		return f;
+	}
 
-		Trace.WriteLine("Samples: " + samples);
+	void PopulateValueList() {
+		configurationValues.Clear ();
+		EchoValues ();
+	}
 
-		CUnsignedInteger value = new CUnsignedInteger(1, samples);
-		AddValue(value);
+	void EchoValues() {
+		float delay = ParseFloat (echoDelay);
+		AddValue (new CUnsignedInteger (1, (UInt16)(delay * 44100)));
+
+		AddValue (new CFixed (2, ParseFloat (echoFeedback, -1f, 1f), 15, true));
+		AddValue (new CFixed (3, ParseFloat (echoDryGain, -1f, 1f), 15, true));
+		AddValue (new CFixed (4, ParseFloat (echoWetGain, -1f, 1f), 15, true));
 	}
 }
