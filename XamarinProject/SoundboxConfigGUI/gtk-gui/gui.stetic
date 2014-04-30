@@ -106,7 +106,7 @@
           <widget class="Gtk.Notebook" id="notebook1">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="CurrentPage">4</property>
+            <property name="CurrentPage">3</property>
             <child>
               <widget class="Gtk.Table" id="table1">
                 <property name="MemberName" />
@@ -580,7 +580,7 @@
                 <property name="RowSpacing">6</property>
                 <property name="ColumnSpacing">6</property>
                 <child>
-                  <widget class="Gtk.Entry" id="entry10">
+                  <widget class="Gtk.Entry" id="flangerDelay">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
                     <property name="Text" translatable="yes">20</property>
@@ -601,7 +601,7 @@
                   </packing>
                 </child>
                 <child>
-                  <widget class="Gtk.Entry" id="entry11">
+                  <widget class="Gtk.Entry" id="flangerSweep">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
                     <property name="Text" translatable="yes">1000</property>
@@ -662,7 +662,7 @@
                 <child>
                   <widget class="Gtk.Label" id="label25">
                     <property name="MemberName" />
-                    <property name="LabelProp" translatable="yes">(10 - 30) [ms]</property>
+                    <property name="LabelProp" translatable="yes">(10 - 45) [ms]</property>
                   </widget>
                   <packing>
                     <property name="LeftAttach">2</property>
