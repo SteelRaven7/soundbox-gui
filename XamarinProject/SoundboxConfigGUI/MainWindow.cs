@@ -157,6 +157,10 @@ public partial class MainWindow: Gtk.Window
 		return f;
 	}
 
+	int ParseInt(Entry e, int min = -9999, int max = 9999) {
+		return (int)ParseFloat (e, min, max);
+	}
+
 	void PopulateValueList() {
 		configurationValues.Clear ();
 		EchoValues ();
