@@ -165,6 +165,8 @@ public partial class MainWindow: Gtk.Window
 		configurationValues.Clear ();
 		EchoValues ();
 		FlangerValues ();
+		ReverbValues ();
+		DistortionValues ();
 	}
 
 	void EchoValues() {
@@ -180,5 +182,20 @@ public partial class MainWindow: Gtk.Window
 		float delay = ParseFloat (flangerDelay, 10, 45);
 		AddValue (new CUnsignedInteger (5, (UInt16)(delay * 44.1f)));
 		AddValue (new CUnsignedInteger (6, (UInt16)ParseInt (flangerSweep, 500, 2500)));
+	}
+
+	void ReverbValues() {
+		AddValue (new CUnsignedInteger (7, (UInt16)ParseInt (reverbDelay1, 0, 1000))); // Check values
+		AddValue (new CUnsignedInteger (8, (UInt16)ParseInt (reverbDelay2, 0, 1000))); // Check values
+		AddValue (new CUnsignedInteger (9, (UInt16)ParseInt (reverbDelay3, 0, 1000))); // Check values
+		AddValue (new CUnsignedInteger (10, (UInt16)ParseInt (reverbDelay4, 0, 1000))); // Check values
+		AddValue (new CFixed (11, ParseFloat (reverbDryGain, -1f, 1f), 15, true));
+		AddValue (new CFixed (12, ParseFloat (reverbWetGain, -1f, 1f), 15, true));
+
+	}
+
+	void DistortionValues() {
+		float distortion = ParseFloat (distortionCutoff);
+		AddValue (new CUnsignedInteger (13, (UInt16)(distortion * 0.1526))); // This needs revising. (100/2^16)*100 = 0.1526
 	}
 }
