@@ -32,6 +32,10 @@ public partial class MainWindow: Gtk.Window
 		instance.log.Buffer.Text += message + "\n";
 	}
 
+	public static void AddValue(ConfigurationValue v) {
+		instance.configurationValues.Add (v);
+	}
+
 	static MainWindow instance;
 	Soundbox soundbox;
 	Timer pulseTimer;
@@ -49,10 +53,8 @@ public partial class MainWindow: Gtk.Window
 		pulseTimer = new Timer (50);
 		pulseTimer.Elapsed += OnProgressIncrement;
 		pulseTimer.Enabled = false;
-	}
 
-	public void AddValue(ConfigurationValue v) {
-		configurationValues.Add (v);
+		ConfigurationValue v = new ConfigurationValue (1);
 	}
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -124,5 +126,41 @@ public partial class MainWindow: Gtk.Window
 
 	void OnProgressIncrement(object source, ElapsedEventArgs e) {
 		progressbar.Pulse ();
+	}
+
+	public string FullStopsToCommas(string s) {
+		return s.Replace ('.', ',');
+	}
+
+	protected void DelayChanged (object sender, EventArgs e)
+	{
+		Entry delay = (Entry) sender;
+
+		float delayTime;
+		try {
+			delayTime = float.Parse(FullStopsToCommas(delay.Text));
+		} catch(Exception ex) {
+			MainWindow.Log("Echo delay: Wrong format");
+			return;
+		}
+
+		if(delayTime > 1.5f) {
+			MainWindow.Log("Echo delay is more than 1.5 seconds");
+		}
+		else if(delayTime < 0f) {
+			MainWindow.Log("Echo delay is less than 0 seconds");
+			delayTime = 0f;
+		}
+
+		if(delayTime > 1.48f) {
+			delayTime = 1.48f;
+		}
+
+		UInt16 samples = (UInt16) (delayTime*44100);
+
+		Trace.WriteLine("Samples: " + samples);
+
+		CUnsignedInteger value = new CUnsignedInteger(1, samples);
+		AddValue(value);
 	}
 }

@@ -106,7 +106,7 @@
           <widget class="Gtk.Notebook" id="notebook1">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="CurrentPage">0</property>
+            <property name="CurrentPage">2</property>
             <child>
               <widget class="Gtk.Table" id="table1">
                 <property name="MemberName" />
@@ -306,9 +306,22 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Label" id="label10">
+              <widget class="Gtk.Fixed" id="fixed1">
                 <property name="MemberName" />
-                <property name="LabelProp" translatable="yes">Echo</property>
+                <property name="HasWindow">False</property>
+                <child>
+                  <widget class="Gtk.Entry" id="delayEntry">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="IsEditable">True</property>
+                    <property name="InvisibleChar">●</property>
+                    <signal name="EditingDone" handler="DelayChanged" />
+                  </widget>
+                  <packing>
+                    <property name="X">126</property>
+                    <property name="Y">74</property>
+                  </packing>
+                </child>
               </widget>
               <packing>
                 <property name="Position">2</property>

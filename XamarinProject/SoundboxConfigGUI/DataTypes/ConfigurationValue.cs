@@ -10,6 +10,7 @@ namespace SoundboxConfigGUI
 
 		public ConfigurationValue (UInt16 address) {
 			this.address = address;
+			ResetBits ();
 		}
 
 		protected void ResetBits() {
