@@ -94,9 +94,6 @@ public partial class MainWindow: Gtk.Window
 
 	protected void Program (object sender, EventArgs e)
 	{
-		SetStatusText ("Listing coefficients...");
-		PopulateValueList ();
-
 		if (soundbox.Connect ()) {
 			SetStatusText ("Clearing flash memory");
 			StartProgress ();
@@ -135,39 +132,35 @@ public partial class MainWindow: Gtk.Window
 		return s.Replace ('.', ',');
 	}
 
-	float ParseFloat(Entry e, float min = -9999f, float max = 9999f) {
-		float f = 0;
+	protected void DelayChanged (object sender, EventArgs e)
+	{
+		Entry delay = (Entry) sender;
+
+		float delayTime;
 		try {
-			f = float.Parse(FullStopsToCommas(e.Text));
+			delayTime = float.Parse(FullStopsToCommas(delay.Text));
 		} catch(Exception ex) {
-			MainWindow.Log(e.Name+": Wrong format");
-			Trace.WriteLine (ex);
-			return 0f;
+			MainWindow.Log("Echo delay: Wrong format");
+			return;
 		}
 
-		if(f > max) {
-			f = max;
-			MainWindow.Log (e.Name + " is more than " + max);
+		if(delayTime > 1.5f) {
+			MainWindow.Log("Echo delay is more than 1.5 seconds");
 		}
-		else if(f < min) {
-			f = min;
-			MainWindow.Log (e.Name + " is less than " + min);
+		else if(delayTime < 0f) {
+			MainWindow.Log("Echo delay is less than 0 seconds");
+			delayTime = 0f;
 		}
 
-		return f;
-	}
+		if(delayTime > 1.48f) {
+			delayTime = 1.48f;
+		}
 
-	void PopulateValueList() {
-		configurationValues.Clear ();
-		EchoValues ();
-	}
+		UInt16 samples = (UInt16) (delayTime*44100);
 
-	void EchoValues() {
-		float delay = ParseFloat (echoDelay);
-		AddValue (new CUnsignedInteger (1, (UInt16)(delay * 44100)));
+		Trace.WriteLine("Samples: " + samples);
 
-		AddValue (new CFixed (2, ParseFloat (echoFeedback, -1f, 1f), 15, true));
-		AddValue (new CFixed (3, ParseFloat (echoDryGain, -1f, 1f), 15, true));
-		AddValue (new CFixed (4, ParseFloat (echoWetGain, -1f, 1f), 15, true));
+		CUnsignedInteger value = new CUnsignedInteger(1, samples);
+		AddValue(value);
 	}
 }
