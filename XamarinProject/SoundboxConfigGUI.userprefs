@@ -1,14 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="SoundboxConfigGUI\Soundbox.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SoundboxConfigGUI\MainWindow.cs">
     <Files>
-      <File FileName="SoundboxConfigGUI\Program.cs" Line="5" Column="2" />
-      <File FileName="SoundboxConfigGUI\Soundbox.cs" Line="50" Column="5" />
-      <File FileName="SoundboxConfigGUI\DataTypes\ConfigurationValue.cs" Line="2" Column="26" />
-      <File FileName="SoundboxConfigGUI\MainWindow.cs" Line="47" Column="23" />
-      <File FileName="SoundboxConfigGUI\DataTypes\CInteger.cs" Line="7" Column="62" />
-      <File FileName="SoundboxConfigGUI\DataTypes\CUnsignedInteger.cs" Line="6" Column="26" />
-      <File FileName="SoundboxConfigGUI\DataTypes\CFixed.cs" Line="25" Column="4" />
+      <File FileName="SoundboxConfigGUI\Program.cs" Line="1" Column="1" />
+      <File FileName="SoundboxConfigGUI\Soundbox.cs" Line="1" Column="1" />
+      <File FileName="SoundboxConfigGUI\MainWindow.cs" Line="141" Column="12" />
+      <File FileName="SoundboxConfigGUI\DataTypes\CInteger.cs" Line="1" Column="1" />
+      <File FileName="SoundboxConfigGUI\DataTypes\CUnsignedInteger.cs" Line="1" Column="1" />
+      <File FileName="SoundboxConfigGUI\DataTypes\CFixed.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

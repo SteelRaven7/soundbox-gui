@@ -10,7 +10,12 @@ namespace SoundboxConfigGUI
 			Application.Init ();
 			MainWindow win = new MainWindow ();
 			win.Show ();
-			Application.Run ();
+			try {
+				Application.Run ();
+			}
+			catch(System.Exception e) {
+				System.Diagnostics.Trace.WriteLine (e.Message);
+			}
 		}
 	}
 }

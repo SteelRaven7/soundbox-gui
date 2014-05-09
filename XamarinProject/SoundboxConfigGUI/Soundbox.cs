@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO.Ports;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace SoundboxConfigGUI
 {
@@ -12,6 +13,12 @@ namespace SoundboxConfigGUI
 
 		public Soundbox () {
 
+		}
+
+		List<ConfigurationValue> configurationValues;
+
+		public void SetValues(List<ConfigurationValue> configurationValues) {
+			this.configurationValues = configurationValues;
 		}
 
 		public void SetPort(string portName) {
@@ -69,6 +76,16 @@ namespace SoundboxConfigGUI
 			SendMessage (value.address, value.value);
 		}
 
+		void WriteConfiguration() {
+			/*MainWindow.Log ("Writing configuration.");
+			MainWindow.SetStatusText ("Writing configuration");*/
+
+			foreach (ConfigurationValue value in configurationValues) {
+				SendConfigurationValue(value);
+				System.Threading.Thread.Sleep (5);
+			}
+		}
+
 		public void SendMessage(ushort address, ushort payload) {
 		
 			byte[] message = new byte[4];
@@ -82,13 +99,13 @@ namespace SoundboxConfigGUI
 			message [2] = payloadBytes [1];
 			message [3] = payloadBytes [0];
 
-			Trace.WriteLine ("Sending message, address: " + address + ", payload: " + payload);
-
+			/*Trace.WriteLine ("Sending message, address: " + address + ", payload: " + payload);
 			Trace.Write("Byte array:");
 			foreach(byte b in message) {
 				Trace.Write(b+", ");
 			}
 			Trace.WriteLine("");
+			*/
 
 			serial.Write (message, 0, message.Length);
 		}
@@ -101,7 +118,10 @@ namespace SoundboxConfigGUI
 			Trace.WriteLine ("Data received: " + data + " interpreted as command " + command);
 
 			if(command == readyByte) {
-				MainWindow.ClearDone ();
+				//MainWindow.ClearDone ();
+				/*SendMessage (1, 0xffff);
+				SendMessage (2, 0xf0f0);*/
+				WriteConfiguration ();
 			} else {
 				Trace.WriteLine ("Unrecognized command received: " + command);
 			}

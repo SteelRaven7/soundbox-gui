@@ -13,7 +13,6 @@ public partial class MainWindow: Gtk.Window
 
 	public static void ClearDone() {
 		MainWindow.Log ("Flash memory cleared.");
-		instance.WriteConfiguration ();
 	}
 
 	public static void StartProgress(bool useAbsoluteProgress = false) {
@@ -63,15 +62,6 @@ public partial class MainWindow: Gtk.Window
 		a.RetVal = true;
 	}
 
-	void WriteConfiguration() {
-		Log ("Writing configuration.");
-		SetStatusText ("Writing configuration");
-
-		foreach (ConfigurationValue value in configurationValues) {
-			soundbox.SendConfigurationValue(value);
-		}
-	}
-
 	void PopulatePortList() {
 		string[] ports = System.IO.Ports.SerialPort.GetPortNames ();
 
@@ -96,6 +86,8 @@ public partial class MainWindow: Gtk.Window
 	{
 		Log ("Listing coefficients...");
 		PopulateValueList ();
+
+		soundbox.SetValues (configurationValues);
 
 		if (soundbox.Connect ()) {
 			SetStatusText ("Clearing flash memory");
@@ -163,6 +155,11 @@ public partial class MainWindow: Gtk.Window
 
 	void PopulateValueList() {
 		configurationValues.Clear ();
+
+		/*for(int i = 1; i < 1000; i++) {
+			AddValue (new CUnsignedInteger ((UInt16)i, (UInt16)(1100-i)));
+		}*/
+
 		EchoValues ();
 		FlangerValues ();
 	}
