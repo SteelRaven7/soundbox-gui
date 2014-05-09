@@ -73,6 +73,11 @@ public partial class MainWindow
 	private global::Gtk.Entry reverbDryGain;
 	private global::Gtk.Entry reverbWetGain;
 	private global::Gtk.Label labelReverb;
+	private global::Gtk.Table table7;
+	private global::Gtk.Entry distortionCutoff;
+	private global::Gtk.Label label11;
+	private global::Gtk.Label label7;
+	private global::Gtk.Label labelDistortion;
 	private global::Gtk.Statusbar statusbar2;
 	private global::Gtk.ProgressBar progressbar;
 	private global::Gtk.Label statusLabel;
@@ -706,9 +711,54 @@ public partial class MainWindow
 		this.labelReverb.LabelProp = global::Mono.Unix.Catalog.GetString ("Reverb");
 		this.notebook1.SetTabLabel (this.table6, this.labelReverb);
 		this.labelReverb.ShowAll ();
+		// Container child notebook1.Gtk.Notebook+NotebookChild
+		this.table7 = new global::Gtk.Table (((uint)(1)), ((uint)(3)), false);
+		this.table7.Name = "table7";
+		this.table7.RowSpacing = ((uint)(6));
+		this.table7.ColumnSpacing = ((uint)(6));
+		// Container child table7.Gtk.Table+TableChild
+		this.distortionCutoff = new global::Gtk.Entry ();
+		this.distortionCutoff.CanFocus = true;
+		this.distortionCutoff.Name = "distortionCutoff";
+		this.distortionCutoff.Text = global::Mono.Unix.Catalog.GetString ("30");
+		this.distortionCutoff.IsEditable = true;
+		this.distortionCutoff.InvisibleChar = '●';
+		this.table7.Add (this.distortionCutoff);
+		global::Gtk.Table.TableChild w55 = ((global::Gtk.Table.TableChild)(this.table7 [this.distortionCutoff]));
+		w55.LeftAttach = ((uint)(1));
+		w55.RightAttach = ((uint)(2));
+		w55.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child table7.Gtk.Table+TableChild
+		this.label11 = new global::Gtk.Label ();
+		w46.SetTip (this.label11, "Signal upper limit, % of dynamic range", "Signal upper limit, % of dynamic range");
+		this.label11.Name = "label11";
+		this.label11.LabelProp = global::Mono.Unix.Catalog.GetString ("(0 - 100%)");
+		this.table7.Add (this.label11);
+		global::Gtk.Table.TableChild w56 = ((global::Gtk.Table.TableChild)(this.table7 [this.label11]));
+		w56.LeftAttach = ((uint)(2));
+		w56.RightAttach = ((uint)(3));
+		w56.XOptions = ((global::Gtk.AttachOptions)(4));
+		w56.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child table7.Gtk.Table+TableChild
+		this.label7 = new global::Gtk.Label ();
+		this.label7.Name = "label7";
+		this.label7.LabelProp = global::Mono.Unix.Catalog.GetString ("Distortion");
+		this.table7.Add (this.label7);
+		global::Gtk.Table.TableChild w57 = ((global::Gtk.Table.TableChild)(this.table7 [this.label7]));
+		w57.XOptions = ((global::Gtk.AttachOptions)(4));
+		w57.YOptions = ((global::Gtk.AttachOptions)(4));
+		this.notebook1.Add (this.table7);
+		global::Gtk.Notebook.NotebookChild w58 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1 [this.table7]));
+		w58.Position = 5;
+		// Notebook tab
+		this.labelDistortion = new global::Gtk.Label ();
+		this.labelDistortion.Name = "labelDistortion";
+		this.labelDistortion.LabelProp = global::Mono.Unix.Catalog.GetString ("Distortion");
+		this.notebook1.SetTabLabel (this.table7, this.labelDistortion);
+		this.labelDistortion.ShowAll ();
 		this.vbox4.Add (this.notebook1);
-		global::Gtk.Box.BoxChild w55 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.notebook1]));
-		w55.Position = 1;
+		global::Gtk.Box.BoxChild w59 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.notebook1]));
+		w59.Position = 1;
 		// Container child vbox4.Gtk.Box+BoxChild
 		this.statusbar2 = new global::Gtk.Statusbar ();
 		this.statusbar2.Name = "statusbar2";
@@ -719,24 +769,24 @@ public partial class MainWindow
 		this.progressbar.Text = "";
 		this.progressbar.PulseStep = 0.06D;
 		this.statusbar2.Add (this.progressbar);
-		global::Gtk.Box.BoxChild w56 = ((global::Gtk.Box.BoxChild)(this.statusbar2 [this.progressbar]));
-		w56.Position = 1;
+		global::Gtk.Box.BoxChild w60 = ((global::Gtk.Box.BoxChild)(this.statusbar2 [this.progressbar]));
+		w60.Position = 1;
 		// Container child statusbar2.Gtk.Box+BoxChild
 		this.statusLabel = new global::Gtk.Label ();
 		this.statusLabel.WidthRequest = 150;
 		this.statusLabel.Name = "statusLabel";
 		this.statusLabel.LabelProp = global::Mono.Unix.Catalog.GetString ("Not connected");
 		this.statusbar2.Add (this.statusLabel);
-		global::Gtk.Box.BoxChild w57 = ((global::Gtk.Box.BoxChild)(this.statusbar2 [this.statusLabel]));
-		w57.Position = 2;
-		w57.Expand = false;
-		w57.Fill = false;
+		global::Gtk.Box.BoxChild w61 = ((global::Gtk.Box.BoxChild)(this.statusbar2 [this.statusLabel]));
+		w61.Position = 2;
+		w61.Expand = false;
+		w61.Fill = false;
 		this.vbox4.Add (this.statusbar2);
-		global::Gtk.Box.BoxChild w58 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.statusbar2]));
-		w58.Position = 2;
-		w58.Expand = false;
-		w58.Fill = false;
-		w58.Padding = ((uint)(2));
+		global::Gtk.Box.BoxChild w62 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.statusbar2]));
+		w62.Position = 2;
+		w62.Expand = false;
+		w62.Fill = false;
+		w62.Padding = ((uint)(2));
 		this.Add (this.vbox4);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();

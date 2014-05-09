@@ -4,7 +4,7 @@
     <Files>
       <File FileName="SoundboxConfigGUI\Program.cs" Line="1" Column="1" />
       <File FileName="SoundboxConfigGUI\Soundbox.cs" Line="1" Column="1" />
-      <File FileName="SoundboxConfigGUI\MainWindow.cs" Line="141" Column="12" />
+      <File FileName="SoundboxConfigGUI\MainWindow.cs" Line="1" Column="1" />
       <File FileName="SoundboxConfigGUI\DataTypes\CInteger.cs" Line="1" Column="1" />
       <File FileName="SoundboxConfigGUI\DataTypes\CUnsignedInteger.cs" Line="1" Column="1" />
       <File FileName="SoundboxConfigGUI\DataTypes\CFixed.cs" Line="1" Column="1" />
