@@ -201,7 +201,7 @@ public partial class MainWindow: Gtk.Window
 	}
 
 	void EchoValues() {
-		float delay = ParseFloat (echoDelay);
+		float delay = ParseFloat (echoDelay, 0, 1.45);
 		AddValue (new CUnsignedInteger (1, (UInt16)(delay * 44100)));
 
 		AddValue (new CFixed (2, ParseFloat (echoFeedback, -1f, 1f), 15, true));
