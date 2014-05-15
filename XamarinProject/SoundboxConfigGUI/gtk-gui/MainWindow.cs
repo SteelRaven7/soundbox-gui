@@ -145,7 +145,7 @@ public partial class MainWindow
 		this.notebook1 = new global::Gtk.Notebook ();
 		this.notebook1.CanFocus = true;
 		this.notebook1.Name = "notebook1";
-		this.notebook1.CurrentPage = 2;
+		this.notebook1.CurrentPage = 0;
 		// Container child notebook1.Gtk.Notebook+NotebookChild
 		this.table1 = new global::Gtk.Table (((uint)(1)), ((uint)(2)), false);
 		this.table1.Name = "table1";
@@ -214,6 +214,7 @@ public partial class MainWindow
 		this.Distortioncheckbox.CanFocus = true;
 		this.Distortioncheckbox.Name = "Distortioncheckbox";
 		this.Distortioncheckbox.Label = global::Mono.Unix.Catalog.GetString ("Distortion");
+		this.Distortioncheckbox.Active = true;
 		this.Distortioncheckbox.DrawIndicator = true;
 		this.Distortioncheckbox.UseUnderline = true;
 		this.table9.Add (this.Distortioncheckbox);
@@ -226,6 +227,7 @@ public partial class MainWindow
 		this.Echocheckbox.CanFocus = true;
 		this.Echocheckbox.Name = "Echocheckbox";
 		this.Echocheckbox.Label = global::Mono.Unix.Catalog.GetString ("Echo");
+		this.Echocheckbox.Active = true;
 		this.Echocheckbox.DrawIndicator = true;
 		this.Echocheckbox.UseUnderline = true;
 		this.table9.Add (this.Echocheckbox);
@@ -238,6 +240,7 @@ public partial class MainWindow
 		this.Equalizercheckbox.CanFocus = true;
 		this.Equalizercheckbox.Name = "Equalizercheckbox";
 		this.Equalizercheckbox.Label = global::Mono.Unix.Catalog.GetString ("Equalizer");
+		this.Equalizercheckbox.Active = true;
 		this.Equalizercheckbox.DrawIndicator = true;
 		this.Equalizercheckbox.UseUnderline = true;
 		this.table9.Add (this.Equalizercheckbox);
@@ -248,6 +251,7 @@ public partial class MainWindow
 		this.Flangercheckbox.CanFocus = true;
 		this.Flangercheckbox.Name = "Flangercheckbox";
 		this.Flangercheckbox.Label = global::Mono.Unix.Catalog.GetString ("Flanger");
+		this.Flangercheckbox.Active = true;
 		this.Flangercheckbox.DrawIndicator = true;
 		this.Flangercheckbox.UseUnderline = true;
 		this.table9.Add (this.Flangercheckbox);
@@ -318,6 +322,7 @@ public partial class MainWindow
 		this.Reverbcheckbox.CanFocus = true;
 		this.Reverbcheckbox.Name = "Reverbcheckbox";
 		this.Reverbcheckbox.Label = global::Mono.Unix.Catalog.GetString ("Reverb");
+		this.Reverbcheckbox.Active = true;
 		this.Reverbcheckbox.DrawIndicator = true;
 		this.Reverbcheckbox.UseUnderline = true;
 		this.table9.Add (this.Reverbcheckbox);
@@ -407,7 +412,7 @@ public partial class MainWindow
 		this.echoDryGain = new global::Gtk.Entry ();
 		this.echoDryGain.CanFocus = true;
 		this.echoDryGain.Name = "echoDryGain";
-		this.echoDryGain.Text = global::Mono.Unix.Catalog.GetString ("1.0");
+		this.echoDryGain.Text = global::Mono.Unix.Catalog.GetString ("0.9");
 		this.echoDryGain.IsEditable = true;
 		this.echoDryGain.InvisibleChar = '●';
 		this.table4.Add (this.echoDryGain);
@@ -435,7 +440,7 @@ public partial class MainWindow
 		this.echoWetGain = new global::Gtk.Entry ();
 		this.echoWetGain.CanFocus = true;
 		this.echoWetGain.Name = "echoWetGain";
-		this.echoWetGain.Text = global::Mono.Unix.Catalog.GetString ("0.8");
+		this.echoWetGain.Text = global::Mono.Unix.Catalog.GetString ("0.7");
 		this.echoWetGain.IsEditable = true;
 		this.echoWetGain.InvisibleChar = '●';
 		this.table4.Add (this.echoWetGain);

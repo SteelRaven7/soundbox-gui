@@ -7,6 +7,8 @@ using System.Timers;
 
 public partial class MainWindow: Gtk.Window
 {
+	bool swedishFloatStrings;
+
 	public static void SetStatusText(string text) {
 		instance.statusLabel.LabelProp = text;
 	}
@@ -52,6 +54,8 @@ public partial class MainWindow: Gtk.Window
 		pulseTimer = new Timer (50);
 		pulseTimer.Elapsed += OnProgressIncrement;
 		pulseTimer.Enabled = false;
+
+		swedishFloatStrings = (0.1f).ToString () [1] == ',';
 
 		ConfigurationValue v = new ConfigurationValue (1);
 	}
@@ -129,7 +133,11 @@ public partial class MainWindow: Gtk.Window
 	}
 
 	public string FullStopsToCommas(string s) {
-		return s.Replace ('.', ',');
+		if(swedishFloatStrings) {
+			return s.Replace ('.', ',');
+		}
+
+		return s;
 	}
 
 	float ParseFloat(Entry e, float min = -9999f, float max = 9999f) {
@@ -141,6 +149,8 @@ public partial class MainWindow: Gtk.Window
 			Trace.WriteLine (ex);
 			return 0f;
 		}
+
+		MainWindow.Log (e.Name + ": " + f);
 
 		if(f > max) {
 			f = max;
@@ -161,17 +171,11 @@ public partial class MainWindow: Gtk.Window
 	void PopulateValueList() {
 		configurationValues.Clear ();
 
-		/*for(int i = 1; i < 1000; i++) {
-			AddValue (new CUnsignedInteger ((UInt16)i, (UInt16)(1100-i)));
-		}*/
-
 		EchoValues ();
-		/*
 		FlangerValues ();
 		ReverbValues ();
 		DistortionValues ();
 		BypassValues ();
-		*/
 	}
 
 	void BypassValues() {

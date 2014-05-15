@@ -5,7 +5,7 @@
   </configuration>
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <widget-library name="../bin/Release/SoundboxConfigGUI.exe" internal="true" />
+    <widget-library name="../bin/Debug/SoundboxConfigGUI.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="MainWindow" design-size="818 540">
     <action-group name="Default">
@@ -106,7 +106,7 @@
           <widget class="Gtk.Notebook" id="notebook1">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="CurrentPage">2</property>
+            <property name="CurrentPage">0</property>
             <child>
               <widget class="Gtk.Table" id="table1">
                 <property name="MemberName" />
@@ -231,6 +231,7 @@
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
                             <property name="Label" translatable="yes">Distortion</property>
+                            <property name="Active">True</property>
                             <property name="DrawIndicator">True</property>
                             <property name="HasLabel">True</property>
                             <property name="UseUnderline">True</property>
@@ -253,6 +254,7 @@
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
                             <property name="Label" translatable="yes">Echo</property>
+                            <property name="Active">True</property>
                             <property name="DrawIndicator">True</property>
                             <property name="HasLabel">True</property>
                             <property name="UseUnderline">True</property>
@@ -275,6 +277,7 @@
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
                             <property name="Label" translatable="yes">Equalizer</property>
+                            <property name="Active">True</property>
                             <property name="DrawIndicator">True</property>
                             <property name="HasLabel">True</property>
                             <property name="UseUnderline">True</property>
@@ -295,6 +298,7 @@
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
                             <property name="Label" translatable="yes">Flanger</property>
+                            <property name="Active">True</property>
                             <property name="DrawIndicator">True</property>
                             <property name="HasLabel">True</property>
                             <property name="UseUnderline">True</property>
@@ -420,6 +424,7 @@
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
                             <property name="Label" translatable="yes">Reverb</property>
+                            <property name="Active">True</property>
                             <property name="DrawIndicator">True</property>
                             <property name="HasLabel">True</property>
                             <property name="UseUnderline">True</property>
@@ -588,7 +593,7 @@
                   <widget class="Gtk.Entry" id="echoDryGain">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
-                    <property name="Text" translatable="yes">1.0</property>
+                    <property name="Text" translatable="yes">0.9</property>
                     <property name="IsEditable">True</property>
                     <property name="InvisibleChar">●</property>
                   </widget>
@@ -634,7 +639,7 @@
                   <widget class="Gtk.Entry" id="echoWetGain">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
-                    <property name="Text" translatable="yes">0.8</property>
+                    <property name="Text" translatable="yes">0.7</property>
                     <property name="IsEditable">True</property>
                     <property name="InvisibleChar">●</property>
                   </widget>
