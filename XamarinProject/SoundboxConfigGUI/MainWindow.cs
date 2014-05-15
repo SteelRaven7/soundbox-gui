@@ -80,6 +80,10 @@ public partial class MainWindow: Gtk.Window
 
 		portList.Model = comPortNames;
 		portList.Active = 0;
+
+		if (ports.Length != 0) {
+			soundbox.SetPort (portList.ActiveText);
+		}
 	}
 
 	protected void Program (object sender, EventArgs e)
@@ -91,7 +95,8 @@ public partial class MainWindow: Gtk.Window
 
 		if (soundbox.Connect ()) {
 			SetStatusText ("Clearing flash memory");
-			StartProgress ();
+			// We don't need no animations
+			//StartProgress ();
 		}
 	}
 
@@ -161,10 +166,12 @@ public partial class MainWindow: Gtk.Window
 		}*/
 
 		EchoValues ();
+		/*
 		FlangerValues ();
 		ReverbValues ();
 		DistortionValues ();
 		BypassValues ();
+		*/
 	}
 
 	void BypassValues() {
@@ -201,12 +208,12 @@ public partial class MainWindow: Gtk.Window
 	}
 
 	void EchoValues() {
-		float delay = ParseFloat (echoDelay, 0, 1.45);
+		float delay = ParseFloat (echoDelay, 0f, 1.45f);
 		AddValue (new CUnsignedInteger (1, (UInt16)(delay * 44100)));
 
-		AddValue (new CFixed (2, ParseFloat (echoFeedback, -1f, 1f), 15, true));
-		AddValue (new CFixed (3, ParseFloat (echoDryGain, -1f, 1f), 15, true));
-		AddValue (new CFixed (4, ParseFloat (echoWetGain, -1f, 1f), 15, true));
+		AddValue (new CFixed (2, ParseFloat (echoFeedback, -1f, 0.9999f), 15, true));
+		AddValue (new CFixed (3, ParseFloat (echoDryGain, -1f, 0.9999f), 15, true));
+		AddValue (new CFixed (4, ParseFloat (echoWetGain, -1f, 0.9999f), 15, true));
 	}
 
 	void FlangerValues() {

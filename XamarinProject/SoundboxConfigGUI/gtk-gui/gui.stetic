@@ -5,7 +5,7 @@
   </configuration>
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <widget-library name="../bin/Debug/SoundboxConfigGUI.exe" internal="true" />
+    <widget-library name="../bin/Release/SoundboxConfigGUI.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="MainWindow" design-size="818 540">
     <action-group name="Default">
@@ -106,7 +106,7 @@
           <widget class="Gtk.Notebook" id="notebook1">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="CurrentPage">0</property>
+            <property name="CurrentPage">2</property>
             <child>
               <widget class="Gtk.Table" id="table1">
                 <property name="MemberName" />
@@ -732,7 +732,7 @@
                 <child>
                   <widget class="Gtk.Label" id="label5">
                     <property name="MemberName" />
-                    <property name="LabelProp" translatable="yes">label4</property>
+                    <property name="LabelProp" translatable="yes">Wet gain</property>
                   </widget>
                   <packing>
                     <property name="TopAttach">2</property>
@@ -751,7 +751,7 @@
                 <child>
                   <widget class="Gtk.Label" id="label6">
                     <property name="MemberName" />
-                    <property name="LabelProp" translatable="yes">label5</property>
+                    <property name="LabelProp" translatable="yes">Feedback</property>
                   </widget>
                   <packing>
                     <property name="TopAttach">3</property>
@@ -1156,7 +1156,7 @@
                   <widget class="Gtk.Entry" id="reverbDelay2">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
-                    <property name="Text" translatable="yes">701</property>
+                    <property name="Text" translatable="yes">227</property>
                     <property name="IsEditable">True</property>
                     <property name="InvisibleChar">●</property>
                   </widget>
@@ -1179,7 +1179,7 @@
                   <widget class="Gtk.Entry" id="reverbDelay3">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
-                    <property name="Text" translatable="yes">2017</property>
+                    <property name="Text" translatable="yes">313</property>
                     <property name="IsEditable">True</property>
                     <property name="InvisibleChar">●</property>
                   </widget>
@@ -1202,7 +1202,7 @@
                   <widget class="Gtk.Entry" id="reverbDelay4">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
-                    <property name="Text" translatable="yes">4021</property>
+                    <property name="Text" translatable="yes">461</property>
                     <property name="IsEditable">True</property>
                     <property name="InvisibleChar">●</property>
                   </widget>

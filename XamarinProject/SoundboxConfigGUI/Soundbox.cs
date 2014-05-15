@@ -23,7 +23,7 @@ namespace SoundboxConfigGUI
 
 		public void SetPort(string portName) {
 			Trace.WriteLine ("SetPort: " + portName);
-			MainWindow.Log ("Setting port to " + portName);
+			//MainWindow.Log ("Setting port to " + portName);
 			serial = new SerialPort(portName, 9600, Parity.Even, 8, StopBits.One);
 			serial.DataReceived += DataReceived;
 		}
@@ -38,10 +38,10 @@ namespace SoundboxConfigGUI
 		}
 
 		public bool Connect() {
-			MainWindow.Log ("Connecting to Soundbox...");
+			//MainWindow.Log ("Connecting to Soundbox...");
 			if (!HasSerialPort ()) {
-				MainWindow.SetStatusText ("No port is available");
-				MainWindow.Log ("Cannot connect: No COM port is available.");
+				//MainWindow.SetStatusText ("No port is available");
+				//MainWindow.Log ("Cannot connect: No COM port is available.");
 				return false;
 			}
 
@@ -56,7 +56,7 @@ namespace SoundboxConfigGUI
 				return false;
 			}
 
-			MainWindow.Log ("Clearing flash memory...");
+			//MainWindow.Log ("Clearing flash memory...");
 			SendClearFlashMessage ();
 			//SendCommand (Command.Handshake);
 			//SendCommand (Command.Test, new byte[] {0xaa, 0xaa});
@@ -77,8 +77,8 @@ namespace SoundboxConfigGUI
 		}
 
 		void WriteConfiguration() {
-			/*MainWindow.Log ("Writing configuration.");
-			MainWindow.SetStatusText ("Writing configuration");*/
+			/*//MainWindow.Log ("Writing configuration.");
+			//MainWindow.SetStatusText ("Writing configuration");*/
 
 			foreach (ConfigurationValue value in configurationValues) {
 				SendConfigurationValue(value);
@@ -99,13 +99,12 @@ namespace SoundboxConfigGUI
 			message [2] = payloadBytes [1];
 			message [3] = payloadBytes [0];
 
-			/*Trace.WriteLine ("Sending message, address: " + address + ", payload: " + payload);
+			Trace.WriteLine ("Sending message, address: " + address + ", payload: " + payload);
 			Trace.Write("Byte array:");
 			foreach(byte b in message) {
 				Trace.Write(b+", ");
 			}
 			Trace.WriteLine("");
-			*/
 
 			serial.Write (message, 0, message.Length);
 		}
@@ -118,7 +117,7 @@ namespace SoundboxConfigGUI
 			Trace.WriteLine ("Data received: " + data + " interpreted as command " + command);
 
 			if(command == readyByte) {
-				//MainWindow.ClearDone ();
+				////MainWindow.ClearDone ();
 				/*SendMessage (1, 0xffff);
 				SendMessage (2, 0xf0f0);*/
 				WriteConfiguration ();

@@ -145,7 +145,7 @@ public partial class MainWindow
 		this.notebook1 = new global::Gtk.Notebook ();
 		this.notebook1.CanFocus = true;
 		this.notebook1.Name = "notebook1";
-		this.notebook1.CurrentPage = 0;
+		this.notebook1.CurrentPage = 2;
 		// Container child notebook1.Gtk.Notebook+NotebookChild
 		this.table1 = new global::Gtk.Table (((uint)(1)), ((uint)(2)), false);
 		this.table1.Name = "table1";
@@ -336,6 +336,7 @@ public partial class MainWindow
 		w19.YOptions = ((global::Gtk.AttachOptions)(4));
 		// Container child table1.Gtk.Table+TableChild
 		this.table3 = new global::Gtk.Table (((uint)(2)), ((uint)(1)), false);
+		this.table3.Name = "table3";
 		this.table3.RowSpacing = ((uint)(6));
 		this.table3.ColumnSpacing = ((uint)(6));
 		// Container child table3.Gtk.Table+TableChild
@@ -487,7 +488,7 @@ public partial class MainWindow
 		// Container child table4.Gtk.Table+TableChild
 		this.label5 = new global::Gtk.Label ();
 		this.label5.Name = "label5";
-		this.label5.LabelProp = global::Mono.Unix.Catalog.GetString ("label4");
+		this.label5.LabelProp = global::Mono.Unix.Catalog.GetString ("Wet gain");
 		this.table4.Add (this.label5);
 		global::Gtk.Table.TableChild w34 = ((global::Gtk.Table.TableChild)(this.table4 [this.label5]));
 		w34.TopAttach = ((uint)(2));
@@ -497,7 +498,7 @@ public partial class MainWindow
 		// Container child table4.Gtk.Table+TableChild
 		this.label6 = new global::Gtk.Label ();
 		this.label6.Name = "label6";
-		this.label6.LabelProp = global::Mono.Unix.Catalog.GetString ("label5");
+		this.label6.LabelProp = global::Mono.Unix.Catalog.GetString ("Feedback");
 		this.table4.Add (this.label6);
 		global::Gtk.Table.TableChild w35 = ((global::Gtk.Table.TableChild)(this.table4 [this.label6]));
 		w35.TopAttach = ((uint)(3));
@@ -727,7 +728,7 @@ public partial class MainWindow
 		this.reverbDelay2 = new global::Gtk.Entry ();
 		this.reverbDelay2.CanFocus = true;
 		this.reverbDelay2.Name = "reverbDelay2";
-		this.reverbDelay2.Text = global::Mono.Unix.Catalog.GetString ("701");
+		this.reverbDelay2.Text = global::Mono.Unix.Catalog.GetString ("227");
 		this.reverbDelay2.IsEditable = true;
 		this.reverbDelay2.InvisibleChar = '●';
 		this.table6.Add (this.reverbDelay2);
@@ -741,7 +742,7 @@ public partial class MainWindow
 		this.reverbDelay3 = new global::Gtk.Entry ();
 		this.reverbDelay3.CanFocus = true;
 		this.reverbDelay3.Name = "reverbDelay3";
-		this.reverbDelay3.Text = global::Mono.Unix.Catalog.GetString ("2017");
+		this.reverbDelay3.Text = global::Mono.Unix.Catalog.GetString ("313");
 		this.reverbDelay3.IsEditable = true;
 		this.reverbDelay3.InvisibleChar = '●';
 		this.table6.Add (this.reverbDelay3);
@@ -755,7 +756,7 @@ public partial class MainWindow
 		this.reverbDelay4 = new global::Gtk.Entry ();
 		this.reverbDelay4.CanFocus = true;
 		this.reverbDelay4.Name = "reverbDelay4";
-		this.reverbDelay4.Text = global::Mono.Unix.Catalog.GetString ("4021");
+		this.reverbDelay4.Text = global::Mono.Unix.Catalog.GetString ("461");
 		this.reverbDelay4.IsEditable = true;
 		this.reverbDelay4.InvisibleChar = '●';
 		this.table6.Add (this.reverbDelay4);
