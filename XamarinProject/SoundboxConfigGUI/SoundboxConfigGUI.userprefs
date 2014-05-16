@@ -3,6 +3,7 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="MainWindow.cs">
     <Files>
       <File FileName="MainWindow.cs" Line="203" Column="3" />
+      <File FileName="Soundbox.cs" Line="102" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
