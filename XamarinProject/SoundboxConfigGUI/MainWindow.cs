@@ -222,7 +222,7 @@ public partial class MainWindow: Gtk.Window
 
 	void FlangerValues() {
 		float delay = ParseFloat (flangerDelay, 10, 45);
-		AddValue (new CUnsignedInteger (5, (UInt16)(delay * 44.1f)));
+		AddValue (new CUnsignedInteger (5, (UInt16)(delay * 44f)));
 		AddValue (new CUnsignedInteger (6, (UInt16)ParseInt (flangerSweep, 500, 2500)));
 	}
 
