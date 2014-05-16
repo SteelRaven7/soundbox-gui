@@ -260,7 +260,7 @@ public partial class MainWindow: Gtk.Window
 
 	void DistortionValues() {
 		float distortion = ParseFloat (distortionCutoff);
-					AddValue (new CUnsignedInteger (11, (UInt16)(distortion * ((2^16)/100)))); // 2^16/100 = 655.36
+		AddValue (new CUnsignedInteger (11, (UInt16)(distortion * (((2^15)-1)/100)))); // 2^16/100 = 655.36 : ((2^15)-1)/100 = 327.67
 	}
 
 
